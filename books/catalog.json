@@ -1,0 +1,16 @@
+{
+  "siteTitle": "墨卷",
+  "siteSubtitle": "同人長篇閱讀",
+  "footer": "同人創作 · 僅供展示閱讀 · 請勿轉載商用",
+  "books": [
+    {
+      "id": "zhou-ming",
+      "title": "咒名未熄",
+      "subtitle": "一部關於舊咒、雨巷與命運的同人中篇",
+      "author": "示範作者",
+      "tags": ["同人", "奇幻", "黑魔法"],
+      "blurb": "舊咒甦醒，雨巷深處有人在喚一個不像名字的詞。",
+      "folder": "zhou-ming"
+    }
+  ]
+}

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="長篇小說線上閱讀" />
+  <title>墨卷</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-theme="parchment" data-font-size="md" data-view="library">
+  <a class="skip-link" href="#view-library">跳至內容</a>
+
+  <header class="topbar" role="banner">
+    <button type="button" class="brand" id="btn-library" title="回到書庫">
+      <span class="brand-mark" aria-hidden="true">✦</span>
+      <span class="brand-name" id="site-title">墨卷</span>
+    </button>
+    <div class="topbar-actions">
+      <button type="button" class="text-btn book-only" id="btn-nav-book" title="作品首頁" hidden>作品</button>
+      <button type="button" class="text-btn book-only" id="btn-nav-toc" title="章節目錄" hidden>目錄</button>
+      <button type="button" class="icon-btn" id="btn-settings" aria-expanded="false" aria-controls="settings-panel" title="閱讀設定">
+        <span class="icon" aria-hidden="true">⚙</span>
+        <span class="sr-only">閱讀設定</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="settings-panel" id="settings-panel" hidden>
+    <fieldset class="setting-group">
+      <legend>閱讀主題</legend>
+      <div class="chip-row" role="radiogroup" aria-label="閱讀主題">
+        <button type="button" class="chip" data-theme="parchment" aria-pressed="true">羊皮紙</button>
+        <button type="button" class="chip" data-theme="ink" aria-pressed="false">墨夜</button>
+        <button type="button" class="chip" data-theme="mist" aria-pressed="false">霧白</button>
+      </div>
+    </fieldset>
+    <fieldset class="setting-group">
+      <legend>字體大小</legend>
+      <div class="chip-row" role="radiogroup" aria-label="字體大小">
+        <button type="button" class="chip" data-font="sm" aria-pressed="false">小</button>
+        <button type="button" class="chip" data-font="md" aria-pressed="true">中</button>
+        <button type="button" class="chip" data-font="lg" aria-pressed="false">大</button>
+      </div>
+    </fieldset>
+  </div>
+
+  <div class="boot-status" id="boot-status" aria-live="polite">載入書庫中…</div>
+
+  <!-- ⓪ 書庫：選擇作品 -->
+  <main class="view library" id="view-library" aria-label="書庫" hidden>
+    <header class="library-header">
+      <h1 class="library-title" id="library-title">墨卷</h1>
+      <p class="library-subtitle" id="library-subtitle"></p>
+    </header>
+    <div class="book-grid" id="book-grid"></div>
+  </main>
+
+  <!-- ① 作品首頁：書名＋標籤＋簡介 -->
+  <main class="view home" id="view-home" aria-label="作品首頁" hidden>
+    <section class="home-hero">
+      <h1 class="home-title" id="home-title">咒名未熄</h1>
+      <p class="home-subtitle" id="home-subtitle"></p>
+      <p class="home-author" id="home-author"></p>
+      <ul class="home-tags" id="home-tags" hidden></ul>
+      <div class="home-actions">
+        <button type="button" class="btn-primary" id="btn-start-read">開始閱讀</button>
+        <button type="button" class="btn-ghost" id="btn-go-toc">章節目錄</button>
+        <button type="button" class="btn-ghost" id="btn-back-library">返回書庫</button>
+      </div>
+    </section>
+
+    <section class="home-synopsis" aria-labelledby="synopsis-heading">
+      <h2 id="synopsis-heading">作品簡介</h2>
+      <div class="home-synopsis-body" id="home-synopsis"></div>
+      <p class="home-stats" id="home-stats"></p>
+    </section>
+  </main>
+
+  <!-- ② 章節目錄總覽 -->
+  <main class="view toc-page" id="view-toc" aria-label="章節目錄" hidden>
+    <header class="toc-page-header">
+      <p class="toc-page-kicker">章節目錄</p>
+      <h1 class="toc-page-title" id="toc-page-title">咒名未熄</h1>
+      <p class="toc-meta" id="toc-meta"></p>
+    </header>
+    <nav class="toc-overview" id="toc-list" aria-label="章節列表"></nav>
+    <div class="toc-page-footer">
+      <button type="button" class="btn-ghost" id="btn-toc-back-home">返回作品首頁</button>
+    </div>
+  </main>
+
+  <!-- ③ 閱讀內文 -->
+  <main class="view reader" id="view-reader" aria-label="章節閱讀" hidden>
+    <article class="chapter" id="chapter-view">
+      <header class="chapter-header">
+        <p class="chapter-label" id="chapter-label"></p>
+        <h1 class="chapter-title" id="chapter-title"></h1>
+        <p class="chapter-date" id="chapter-date"></p>
+      </header>
+
+      <aside class="chapter-block intro" id="chapter-intro" hidden>
+        <p class="block-label">前言</p>
+        <div class="block-body" id="chapter-intro-body"></div>
+      </aside>
+
+      <div class="chapter-body content" id="chapter-content"></div>
+
+      <aside class="chapter-block outro" id="chapter-outro" hidden>
+        <p class="block-label">結語</p>
+        <div class="block-body" id="chapter-outro-body"></div>
+      </aside>
+    </article>
+
+    <nav class="chapter-nav" aria-label="章節導覽">
+      <button type="button" class="nav-btn" id="btn-prev" disabled>
+        <span class="nav-dir">上一章</span>
+        <span class="nav-title" id="prev-title"></span>
+      </button>
+      <button type="button" class="nav-btn" id="btn-next" disabled>
+        <span class="nav-dir">下一章</span>
+        <span class="nav-title" id="next-title"></span>
+      </button>
+    </nav>
+
+    <div class="reader-foot-actions">
+      <button type="button" class="btn-ghost" id="btn-reader-toc">返回目錄</button>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p id="footer-text">同人創作 · 僅供展示閱讀</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
