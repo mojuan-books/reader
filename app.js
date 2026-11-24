@@ -351,28 +351,37 @@
     }
 
     books.forEach((book) => {
+      // 版面與作品首頁相同；差異僅在 hero 下方：作品頁是三顆按鈕，書庫是一行提示
       const btn = document.createElement("button");
       btn.type = "button";
       btn.className = "book-card";
+      btn.setAttribute("aria-label", `進入作品：${book.title || book.id}`);
       btn.innerHTML =
-        '<h2 class="book-card-title"></h2>' +
-        '<p class="book-card-subtitle"></p>' +
-        '<p class="book-card-meta"></p>' +
-        '<ul class="book-card-tags"></ul>' +
-        '<p class="book-card-blurb"></p>';
+        '<section class="home-hero">' +
+        '<h2 class="home-title"></h2>' +
+        '<p class="home-subtitle"></p>' +
+        '<p class="home-author"></p>' +
+        '<ul class="home-tags"></ul>' +
+        '<p class="book-card-hint"></p>' +
+        "</section>";
 
-      btn.querySelector(".book-card-title").textContent = book.title || book.id;
-      const sub = btn.querySelector(".book-card-subtitle");
+      btn.querySelector(".home-title").textContent = book.title || book.id;
+
+      const sub = btn.querySelector(".home-subtitle");
       if (hasText(book.subtitle)) {
         sub.textContent = book.subtitle;
       } else {
         sub.hidden = true;
       }
-      btn.querySelector(".book-card-meta").textContent = hasText(book.author)
-        ? `作者 · ${book.author}`
-        : "";
 
-      const tags = btn.querySelector(".book-card-tags");
+      const author = btn.querySelector(".home-author");
+      if (hasText(book.author)) {
+        author.textContent = `作者 · ${book.author}`;
+      } else {
+        author.hidden = true;
+      }
+
+      const tags = btn.querySelector(".home-tags");
       if (Array.isArray(book.tags) && book.tags.length) {
         book.tags.forEach((tag) => {
           const li = document.createElement("li");
@@ -383,12 +392,8 @@
         tags.hidden = true;
       }
 
-      const blurb = btn.querySelector(".book-card-blurb");
-      if (hasText(book.blurb)) {
-        blurb.textContent = book.blurb;
-      } else {
-        blurb.hidden = true;
-      }
+      const hint = btn.querySelector(".book-card-hint");
+      hint.textContent = hasText(book.blurb) ? book.blurb : "點此進入作品";
 
       btn.addEventListener("click", () => setHash("home", book.id));
       els.bookGrid.appendChild(btn);
