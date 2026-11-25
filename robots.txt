@@ -1,0 +1,31 @@
+# 只禁止抓取章節內容。
+# 首頁、書目、作品簡介、封面圖仍可被抓取
+User-agent: *
+Disallow: /books/*/ch
+
+User-agent: GPTBot
+Disallow: /books/*/ch
+
+User-agent: ClaudeBot
+Disallow: /books/*/ch
+
+User-agent: Claude-Web
+Disallow: /books/*/ch
+
+User-agent: anthropic-ai
+Disallow: /books/*/ch
+
+User-agent: CCBot
+Disallow: /books/*/ch
+
+User-agent: Google-Extended
+Disallow: /books/*/ch
+
+User-agent: Bytespider
+Disallow: /books/*/ch
+
+User-agent: Amazonbot
+Disallow: /books/*/ch
+
+User-agent: Applebot-Extended
+Disallow: /books/*/ch
