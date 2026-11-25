@@ -13,24 +13,36 @@
   --max-read: 42rem;
   --topbar-h: 3.25rem;
 
-  --bg: #e8dfc8;
-  --bg-deep: #d9cdb0;
-  --surface: rgba(250, 244, 230, 0.88);
+  /* 羊皮紙：外底與卡片都走暖黃褐，避免卡片發白 */
+  --bg: #d6c29a;
+  --bg-deep: #c4ad7e;
+  --surface: #e6d4ae;
+  --surface-deep: #ddc79a;
   --ink: #2a2118;
   --ink-soft: #5a4a38;
   --muted: #7a6a55;
   --accent: #6b3a2a;
-  --accent-glow: rgba(107, 58, 42, 0.18);
-  --line: rgba(74, 55, 35, 0.18);
-  --intro-bg: rgba(107, 58, 42, 0.07);
-  --outro-bg: rgba(45, 62, 55, 0.08);
-  --topbar-bg: rgba(232, 223, 200, 0.92);
+  --accent-glow: rgba(107, 58, 42, 0.2);
+  --line: rgba(90, 64, 36, 0.28);
+  --intro-bg: rgba(107, 58, 42, 0.1);
+  --outro-bg: rgba(45, 62, 55, 0.1);
+  --topbar-bg: rgba(214, 194, 154, 0.96);
+  --paper-sheen: linear-gradient(
+    165deg,
+    rgba(255, 248, 230, 0.35) 0%,
+    transparent 42%,
+    rgba(140, 110, 60, 0.08) 100%
+  );
+  --fs-body: 1.22rem;
+  --lh-body: 1.95;
+  --fs-tag: 0.82rem;
 }
 
 [data-theme="ink"] {
   --bg: #14110f;
   --bg-deep: #0c0a09;
-  --surface: rgba(28, 24, 20, 0.92);
+  --surface: #1c1814;
+  --surface-deep: #151210;
   --ink: #e8dfd0;
   --ink-soft: #c4b7a2;
   --muted: #8f8372;
@@ -41,12 +53,19 @@
   --outro-bg: rgba(120, 140, 150, 0.08);
   --topbar-bg: rgba(20, 17, 15, 0.94);
   --shadow-soft: 0 12px 40px rgba(0, 0, 0, 0.45);
+  --paper-sheen: linear-gradient(
+    165deg,
+    rgba(196, 165, 116, 0.08) 0%,
+    transparent 50%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
 }
 
 [data-theme="mist"] {
   --bg: #f2efe8;
   --bg-deep: #e5e0d4;
-  --surface: rgba(255, 253, 248, 0.95);
+  --surface: #fffcf6;
+  --surface-deep: #f7f3ea;
   --ink: #2c2a26;
   --ink-soft: #4f4b44;
   --muted: #7a756c;
@@ -56,19 +75,28 @@
   --intro-bg: rgba(61, 79, 69, 0.06);
   --outro-bg: rgba(90, 70, 50, 0.06);
   --topbar-bg: rgba(242, 239, 232, 0.94);
+  --paper-sheen: linear-gradient(
+    165deg,
+    rgba(255, 255, 255, 0.55) 0%,
+    transparent 55%,
+    rgba(80, 70, 50, 0.04) 100%
+  );
 }
 
 [data-font-size="sm"] {
   --fs-body: 1.1rem;
   --lh-body: 1.85;
+  --fs-tag: 0.75rem; /* 現行標籤＝最小 */
 }
 [data-font-size="md"] {
   --fs-body: 1.22rem;
   --lh-body: 1.95;
+  --fs-tag: 0.88rem;
 }
 [data-font-size="lg"] {
   --fs-body: 1.38rem;
   --lh-body: 2.05;
+  --fs-tag: 1rem;
 }
 
 *,
@@ -85,12 +113,13 @@ body {
   margin: 0;
   min-height: 100vh;
   font-family: var(--font-body);
+  font-size: var(--fs-body);
   color: var(--ink);
   background:
     radial-gradient(ellipse 80% 50% at 50% -10%, var(--accent-glow), transparent 55%),
     linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
   background-attachment: fixed;
-  line-height: 1.6;
+  line-height: var(--lh-body);
   -webkit-font-smoothing: antialiased;
 }
 
@@ -234,7 +263,7 @@ body {
   right: 0.75rem;
   width: min(18rem, calc(100vw - 1.5rem));
   padding: 1rem;
-  background: var(--surface);
+  background: var(--paper-sheen), var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   box-shadow: var(--shadow-soft);
@@ -400,8 +429,9 @@ body {
 .book-card-hint {
   position: relative;
   margin: 1.85rem 0 0;
-  font-size: 0.95rem;
-  letter-spacing: 0.12em;
+  font-size: 0.88em;
+  letter-spacing: 0.08em;
+  line-height: 1.65;
   color: var(--muted);
 }
 
@@ -426,7 +456,7 @@ body {
 .home-hero {
   text-align: center;
   padding: 2.5rem 1.25rem 2.25rem;
-  background: var(--surface);
+  background: var(--paper-sheen), var(--surface);
   border: 1px solid var(--line);
   border-radius: calc(var(--radius) + 2px);
   box-shadow: var(--shadow-soft);
@@ -439,6 +469,26 @@ body {
   inset: 0;
   background: radial-gradient(ellipse 70% 55% at 50% 0%, var(--accent-glow), transparent 70%);
   pointer-events: none;
+}
+
+.book-cover-wrap {
+  position: relative;
+  margin: 0 auto 1.5rem;
+  width: min(100%, 14.5rem);
+}
+.book-cover {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid var(--line);
+  box-shadow: 0 10px 28px rgba(20, 14, 10, 0.18);
+  background: var(--bg-deep);
+}
+[data-theme="ink"] .book-cover {
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
 }
 
 .home-title {
@@ -456,7 +506,7 @@ body {
   position: relative;
   margin: 1rem auto 0;
   max-width: 28rem;
-  font-size: 1.05rem;
+  font-size: 0.92em;
   line-height: 1.7;
   color: var(--ink-soft);
 }
@@ -464,7 +514,7 @@ body {
 .home-author {
   position: relative;
   margin: 1.1rem 0 0;
-  font-size: 0.95rem;
+  font-size: 0.85em;
   letter-spacing: 0.12em;
   color: var(--muted);
 }
@@ -480,12 +530,12 @@ body {
   gap: 0.4rem;
 }
 .home-tags li {
-  font-size: 0.75rem;
+  font-size: var(--fs-tag);
   letter-spacing: 0.08em;
   color: var(--accent);
   border: 1px solid var(--line);
   border-radius: 999px;
-  padding: 0.25rem 0.7rem;
+  padding: 0.28em 0.75em;
   background: var(--accent-glow);
 }
 
@@ -501,7 +551,7 @@ body {
 .home-synopsis {
   margin-top: 1.25rem;
   padding: 1.5rem 1.25rem 1.6rem;
-  background: var(--surface);
+  background: var(--paper-sheen), var(--surface-deep);
   border: 1px solid var(--line);
   border-radius: calc(var(--radius) + 2px);
 }
@@ -509,14 +559,14 @@ body {
 .home-synopsis h3 {
   margin: 0 0 0.85rem;
   font-family: var(--font-display);
-  font-size: 1.15rem;
+  font-size: 1.05em;
   font-weight: 400;
   letter-spacing: 0.14em;
   color: var(--accent);
 }
 .home-synopsis-body {
-  font-size: 1.12rem;
-  line-height: 1.95;
+  font-size: 1em;
+  line-height: var(--lh-body);
   color: var(--ink);
   text-align: justify;
   text-justify: inter-ideograph;
@@ -532,7 +582,7 @@ body {
   margin: 1.15rem 0 0;
   padding-top: 0.9rem;
   border-top: 1px solid var(--line);
-  font-size: 0.8rem;
+  font-size: 0.78em;
   color: var(--muted);
   letter-spacing: 0.04em;
 }
@@ -542,7 +592,7 @@ body {
   text-align: center;
   margin-bottom: 1.25rem;
   padding: 1.5rem 1rem 1.25rem;
-  background: var(--surface);
+  background: var(--paper-sheen), var(--surface);
   border: 1px solid var(--line);
   border-radius: calc(var(--radius) + 2px);
 }
@@ -579,11 +629,12 @@ body {
   text-align: left;
   appearance: none;
   border: 1px solid var(--line);
-  background: var(--surface);
+  background: var(--paper-sheen), var(--surface);
   color: var(--ink);
   border-radius: var(--radius);
   padding: 1rem 1.1rem;
   cursor: pointer;
+  font-size: 1em;
   transition: background var(--transition), border-color var(--transition), transform var(--transition);
 }
 .toc-item:hover,
@@ -607,7 +658,7 @@ body {
 .toc-item-title {
   display: block;
   font-family: var(--font-display);
-  font-size: 1.2rem;
+  font-size: 1.05em;
   letter-spacing: 0.06em;
   line-height: 1.4;
 }
@@ -625,7 +676,7 @@ body {
 
 /* ---------- Reader ---------- */
 .chapter {
-  background: var(--surface);
+  background: var(--paper-sheen), var(--surface);
   border: 1px solid var(--line);
   border-radius: calc(var(--radius) + 2px);
   padding: 1.75rem 1.25rem 2rem;
@@ -683,7 +734,7 @@ body {
   color: var(--accent);
 }
 .block-body {
-  font-size: calc(var(--fs-body) * 0.94);
+  font-size: 0.94em;
   line-height: calc(var(--lh-body) * 0.95);
   color: var(--ink-soft);
   font-style: italic;
@@ -696,7 +747,7 @@ body {
 }
 
 .chapter-body.content {
-  font-size: var(--fs-body);
+  font-size: 1em;
   line-height: var(--lh-body);
   color: var(--ink);
   text-align: justify;
@@ -723,12 +774,13 @@ body {
 .nav-btn {
   appearance: none;
   border: 1px solid var(--line);
-  background: var(--surface);
+  background: var(--paper-sheen), var(--surface);
   color: var(--ink);
   border-radius: var(--radius);
   padding: 0.85rem 1rem;
   text-align: left;
   cursor: pointer;
+  font-size: 1em;
   transition: border-color var(--transition), background var(--transition), opacity var(--transition);
   min-height: 4rem;
 }

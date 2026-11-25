@@ -5,6 +5,7 @@
  * 資料結構（建議）：
  *   books/catalog.json              → 書庫清單（選書首頁）
  *   books/<book-id>/book.json       → 該書簡介 + 章節目錄
+ *   books/<book-id>/cover.jpg       → 可選封面（book.json / catalog 的 cover 欄位）
  *   books/<book-id>/ch01.json       → 章節內文（intro/content/outro）
  *
  * 書與章要不要「編號」？
@@ -53,6 +54,8 @@
     libraryTitle: document.getElementById("library-title"),
     librarySubtitle: document.getElementById("library-subtitle"),
     bookGrid: document.getElementById("book-grid"),
+    homeCoverWrap: document.getElementById("home-cover-wrap"),
+    homeCover: document.getElementById("home-cover"),
     homeTitle: document.getElementById("home-title"),
     homeSubtitle: document.getElementById("home-subtitle"),
     homeAuthor: document.getElementById("home-author"),
@@ -145,6 +148,29 @@
   function bookFolder(bookId) {
     const entry = catalogEntry(bookId);
     return entry && entry.folder ? entry.folder : bookId;
+  }
+
+  /** 封面圖路徑：放在該書資料夾內，欄位 cover 例如 "cover.jpg" */
+  function coverUrl(bookId, coverFile) {
+    if (!hasText(coverFile)) return "";
+    return `${BOOKS_DIR}/${bookFolder(bookId)}/${coverFile}`;
+  }
+
+  function applyCoverImage(imgEl, wrapEl, bookId, coverFile, title) {
+    const url = coverUrl(bookId, coverFile);
+    if (!url) {
+      if (wrapEl) wrapEl.hidden = true;
+      if (imgEl) {
+        imgEl.removeAttribute("src");
+        imgEl.alt = "";
+      }
+      return;
+    }
+    if (wrapEl) wrapEl.hidden = false;
+    if (imgEl) {
+      imgEl.src = url;
+      imgEl.alt = title ? `${title} 封面` : "封面";
+    }
   }
 
   function sortedChapters() {
@@ -358,6 +384,9 @@
       btn.setAttribute("aria-label", `進入作品：${book.title || book.id}`);
       btn.innerHTML =
         '<section class="home-hero">' +
+        '<div class="book-cover-wrap" hidden>' +
+        '<img class="book-cover" alt="" />' +
+        "</div>" +
         '<h2 class="home-title"></h2>' +
         '<p class="home-subtitle"></p>' +
         '<p class="home-author"></p>' +
@@ -365,7 +394,15 @@
         '<p class="book-card-hint"></p>' +
         "</section>";
 
-      btn.querySelector(".home-title").textContent = book.title || book.id;
+      const title = book.title || book.id;
+      btn.querySelector(".home-title").textContent = title;
+      applyCoverImage(
+        btn.querySelector(".book-cover"),
+        btn.querySelector(".book-cover-wrap"),
+        book.id,
+        book.cover,
+        title
+      );
 
       const sub = btn.querySelector(".home-subtitle");
       if (hasText(book.subtitle)) {
@@ -409,6 +446,14 @@
     els.homeTitle.textContent = title;
     els.tocPageTitle.textContent = title;
     document.title = `${title} · ${CATALOG.siteTitle || "墨卷"}`;
+
+    applyCoverImage(
+      els.homeCover,
+      els.homeCoverWrap,
+      currentBookId,
+      currentBook.cover || (catalogEntry(currentBookId) || {}).cover,
+      title
+    );
 
     if (hasText(currentBook.subtitle)) {
       els.homeSubtitle.hidden = false;
