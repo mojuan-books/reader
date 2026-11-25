@@ -96,6 +96,27 @@
       "title": "食死徒残党在蛇院眼里是一群性格扭曲的讨厌鬼",
       "publishDate": "2026-11-25",
       "file": "ch12.json"
+    },
+    {
+      "id": "ch13",
+      "order": 13,
+      "title": "来自特拉弗斯学长的圣诞大礼",
+      "publishDate": "2026-11-26",
+      "file": "ch13.json"
+    },
+    {
+      "id": "ch14",
+      "order": 14,
+      "title": "如果世界知道了你是容器",
+      "publishDate": "2026-11-27",
+      "file": "ch14.json"
+    },
+    {
+      "id": "ch15",
+      "order": 15,
+      "title": "教父的大脑封闭术特训：没有对比就没有伤害",
+      "publishDate": "2026-11-28",
+      "file": "ch15.json"
     }
   ]
 }
