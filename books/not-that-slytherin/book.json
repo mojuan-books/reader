@@ -68,6 +68,34 @@
       "title": "西里斯：进斯莱特林一定是遗传了我的反叛基因",
       "publishDate": "2026-11-21",
       "file": "ch08.json"
+    },
+    {
+      "id": "ch09",
+      "order": 9,
+      "title": "从鬼屋到星空宴会厅只需一枚戒指",
+      "publishDate": "2026-11-22",
+      "file": "ch09.json"
+    },
+    {
+      "id": "ch10",
+      "order": 10,
+      "title": "课堂摸鱼最高境界",
+      "publishDate": "2026-11-23",
+      "file": "ch10.json"
+    },
+    {
+      "id": "ch11",
+      "order": 11,
+      "title": "双面间谍老底在纯血圈居然是公开八卦？",
+      "publishDate": "2026-11-24",
+      "file": "ch11.json"
+    },
+    {
+      "id": "ch12",
+      "order": 12,
+      "title": "食死徒残党在蛇院眼里是一群性格扭曲的讨厌鬼",
+      "publishDate": "2026-11-25",
+      "file": "ch12.json"
     }
   ]
 }
