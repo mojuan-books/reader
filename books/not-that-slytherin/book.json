@@ -117,6 +117,97 @@
       "title": "教父的大脑封闭术特训：没有对比就没有伤害",
       "publishDate": "2026-11-28",
       "file": "ch15.json"
+    },
+    {
+      "id": "ch16",
+      "order": 16,
+      "title": "台上演戏台下扫雷",
+      "publishDate": "2026-11-29",
+      "file": "ch16.json"
+    },
+    {
+      "id": "ch17",
+      "order": 17,
+      "title": "当邓不利多开始跟诅咒卡BUG",
+      "publishDate": "2026-11-30",
+      "file": "ch17.json"
+    },
+    {
+      "id": "ch18",
+      "order": 18,
+      "title": "一场鸡飞狗跳的午睡",
+      "publishDate": "2026-12-01",
+      "file": "ch18.json"
+    },
+    {
+      "id": "ch19",
+      "order": 19,
+      "title": "深海冷灰中歸家的弟弟",
+      "publishDate": "2026-12-02",
+      "file": "ch19.json"
+    },
+    {
+      "id": "ch20",
+      "order": 20,
+      "title": "邓布利多偶尔也会看走眼",
+      "publishDate": "2026-12-03",
+      "file": "ch20.json"
+    },
+    {
+      "id": "ch21",
+      "order": 21,
+      "title": "当纯血家主开始操盘舆论",
+      "publishDate": "2026-12-04",
+      "file": "ch21.json"
+    },
+    {
+      "id": "ch22",
+      "order": 22,
+      "title": "教父的棋局",
+      "publishDate": "2026-12-05",
+      "file": "ch22.json"
+    },
+    {
+      "id": "ch23",
+      "order": 23,
+      "title": "斯内普院长的周期震荡",
+      "publishDate": "2026-12-06",
+      "file": "ch23.json"
+    },
+    {
+      "id": "ch24",
+      "order": 24,
+      "title": "圣芒戈可不是开善堂的",
+      "publishDate": "2026-12-07",
+      "file": "ch24.json"
+    },
+    {
+      "id": "ch25",
+      "order": 25,
+      "title": "黑魔印记的合法漂白术",
+      "publishDate": "2026-12-08",
+      "file": "ch25.json"
+    },
+    {
+      "id": "ch26",
+      "order": 26,
+      "title": "暑假清帐",
+      "publishDate": "2026-12-09",
+      "file": "ch26.json"
+    },
+    {
+      "id": "ch27",
+      "order": 27,
+      "title": "空壳的体面",
+      "publishDate": "2026-12-10",
+      "file": "ch27.json"
+    },
+    {
+      "id": "ch28",
+      "order": 28,
+      "title": "残阳沉入黑海",
+      "publishDate": "2026-12-11",
+      "file": "ch28.json"
     }
   ]
 }
