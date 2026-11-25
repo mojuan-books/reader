@@ -276,6 +276,26 @@
     renderBookHome();
   }
 
+  function trackPageview() {
+    const send = () => {
+      try {
+        if (!window.goatcounter || typeof window.goatcounter.count !== "function") {
+          return false;
+        }
+        window.goatcounter.count({
+          path: location.pathname + location.search + location.hash,
+          title: document.title,
+        });
+        return true;
+      } catch (_) {
+        return true; /* 失敗也不重試 */
+      }
+    };
+    if (send()) return;
+    // count.js 仍在載入時稍後再試一次
+    window.setTimeout(send, 1200);
+  }
+
   async function applyRoute() {
     const route = parseHash();
 
@@ -286,6 +306,7 @@
         currentChapterId = null;
         renderLibrary();
         showView("library");
+        trackPageview();
         return;
       }
 
@@ -294,16 +315,19 @@
       if (route.view === "toc") {
         renderToc();
         showView("toc");
+        trackPageview();
         return;
       }
 
       if (route.view === "read") {
         showView("read");
         await openChapter(route.chapterId || firstVisibleId());
+        trackPageview();
         return;
       }
 
       showView("home");
+      trackPageview();
     } catch (err) {
       console.error(err);
       els.bootStatus.hidden = false;
