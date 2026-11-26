@@ -208,6 +208,27 @@
       "title": "把比赛安排成一条龙服务",
       "publishDate": "2026-12-11",
       "file": "ch28.json"
+    },
+    {
+      "id": "ch29",
+      "order": 29,
+      "title": "空壳的体面",
+      "publishDate": "2026-12-12",
+      "file": "ch29.json"
+    },
+    {
+      "id": "ch30",
+      "order": 30,
+      "title": "反正都要下黑湖了何不带点伴手礼",
+      "publishDate": "2026-12-13",
+      "file": "ch30.json"
+    },
+    {
+      "id": "ch31",
+      "order": 31,
+      "title": "尾声：残阳沉入黑海",
+      "publishDate": "2026-12-14",
+      "file": "ch31.json"
     }
   ]
 }
