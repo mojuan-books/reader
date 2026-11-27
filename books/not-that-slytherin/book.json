@@ -177,58 +177,65 @@
     {
       "id": "ch24",
       "order": 24,
-      "title": "圣芒戈可不是开善堂的",
+      "title": "温柔的邻家妈妈纳西莎",
       "publishDate": "2026-12-07",
       "file": "ch24.json"
     },
     {
       "id": "ch25",
       "order": 25,
-      "title": "黑魔印记的合法漂白术",
+      "title": "圣芒戈可不是开善堂的",
       "publishDate": "2026-12-08",
       "file": "ch25.json"
     },
     {
       "id": "ch26",
       "order": 26,
-      "title": "暑假清帐",
+      "title": "黑魔印记的合法漂白术",
       "publishDate": "2026-12-09",
       "file": "ch26.json"
     },
     {
       "id": "ch27",
       "order": 27,
-      "title": "把校内互助做成了家族业务拓展",
+      "title": "暑假清帐",
       "publishDate": "2026-12-10",
       "file": "ch27.json"
     },
     {
       "id": "ch28",
       "order": 28,
-      "title": "把比赛安排成一条龙服务",
+      "title": "把校内互助做成了家族业务拓展",
       "publishDate": "2026-12-11",
       "file": "ch28.json"
     },
     {
       "id": "ch29",
       "order": 29,
-      "title": "空壳的体面",
+      "title": "把比赛安排成一条龙服务",
       "publishDate": "2026-12-12",
       "file": "ch29.json"
     },
     {
       "id": "ch30",
       "order": 30,
-      "title": "反正都要下黑湖了何不带点伴手礼",
+      "title": "空壳的体面",
       "publishDate": "2026-12-13",
       "file": "ch30.json"
     },
     {
       "id": "ch31",
       "order": 31,
-      "title": "尾声：残阳沉入黑海",
+      "title": "反正都要下黑湖了何不带点伴手礼",
       "publishDate": "2026-12-14",
       "file": "ch31.json"
+    },
+    {
+      "id": "ch32",
+      "order": 32,
+      "title": "尾声：残阳沉入黑海",
+      "publishDate": "2026-12-15",
+      "file": "ch32.json"
     }
   ]
 }
