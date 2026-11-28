@@ -713,6 +713,21 @@ body {
   color: var(--muted);
 }
 
+/* 章節插圖（每章一張；有 pic 欄位才顯示） */
+.chapter-pic {
+  margin: 0 0 1.5rem;
+  text-align: center;
+}
+.chapter-pic img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-soft);
+}
+
 .chapter-block {
   margin: 0 0 1.5rem;
   padding: 1rem 1.05rem;

@@ -73,6 +73,8 @@
     chapterLabel: document.getElementById("chapter-label"),
     chapterTitle: document.getElementById("chapter-title"),
     chapterDate: document.getElementById("chapter-date"),
+    pic: document.getElementById("chapter-pic"),
+    picImg: document.getElementById("chapter-pic-img"),
     intro: document.getElementById("chapter-intro"),
     introBody: document.getElementById("chapter-intro-body"),
     content: document.getElementById("chapter-content"),
@@ -217,6 +219,7 @@
       intro: data.intro || "",
       content: data.content || "",
       outro: data.outro || "",
+      pic: data.pic || "",
     };
     chapterCache.set(key, body);
     return body;
@@ -562,6 +565,7 @@
       els.intro.hidden = true;
       els.outro.hidden = true;
       els.content.innerHTML = '<p class="no-indent">目前沒有可顯示的章節。</p>';
+      els.pic.hidden = true;
       currentChapterId = null;
       updateNav();
       return;
@@ -569,6 +573,7 @@
 
     loadingChapter = true;
     els.content.innerHTML = '<p class="no-indent">載入章節中…</p>';
+    els.pic.hidden = true;
     els.intro.hidden = true;
     els.outro.hidden = true;
 
@@ -586,6 +591,15 @@
       els.chapterLabel.textContent = `第 ${index + 1} 章`;
       els.chapterTitle.textContent = meta.title;
       els.chapterDate.textContent = formatDateLabel(meta.publishDate);
+
+      if (hasText(body.pic)) {
+        els.picImg.src = `${BOOKS_DIR}/${bookFolder(currentBookId)}/${encodeURIComponent(body.pic)}`;
+        els.picImg.alt = `${meta.title} 插圖`;
+        els.pic.hidden = false;
+      } else {
+        els.pic.hidden = true;
+        els.picImg.removeAttribute("src");
+      }
 
       if (hasText(body.intro)) {
         els.intro.hidden = false;
@@ -699,6 +713,11 @@
 
     window.addEventListener("hashchange", () => {
       applyRoute();
+    });
+
+    // 插圖檔不存在時整塊隱藏，不留破圖
+    els.picImg.addEventListener("error", () => {
+      els.pic.hidden = true;
     });
   }
 
